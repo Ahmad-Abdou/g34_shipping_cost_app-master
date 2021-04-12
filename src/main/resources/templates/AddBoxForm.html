@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Form</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+    <style>
+        body {
+            padding-top: 60px;
+        }
+    </style>
+
 </head>
 <body>
+<div class="card" style="width: 900px; margin-left: 30px;padding: 30px">
+    <h1 class="bg-dark text-white p-3 mr-4" style="margin-left: 20px">Add Form</h1>
+    <form th:action="@{/add/box}" method="post">
+        <div class="form-group">
+            <label for="Name">Name</label>
+            <input type="text" class="form-control" placeholder="Enter Name" id="Name">
+        </div>
+        <div class="form-group">
+            <input type="radio" name="radio" value="Letter" id="Letter">
+            <label>Letter</label>
+            <input type="radio" name="radio" value="Packet" id="Packet">
+            <label>Packet</label>
+        </div>
+        <div class="form-group">
+            <label for="Weight">Weight</label>
+            <input type="password" class="form-control" placeholder="0.0" id="Weight">
+        </div>
+        <div class="form-group">
+            <label for="Weight Type">Weight Type</label>
+            <input type="password" class="form-control"  id="Weight Type">
+        </div>
+        <div class="form-group">
+            <label for="Country">Country</label>
+            <input type="password" class="form-control"  id="Country">
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox"> Remember me
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+   <a class="btn bg-danger mt-5 text-white " style="width: 80px;border-color:white; border-radius: 4px ">Back</a>
+</div>
 
 </body>
 </html>
