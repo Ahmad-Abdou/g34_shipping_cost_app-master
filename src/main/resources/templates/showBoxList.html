@@ -21,6 +21,21 @@
     <div class="card bg-dark">
     <h1 class="bg-dark text-white" style="padding: 30px;">ShowList</h1>
     <a href="#" class="btn btn-outline-success p-1 mb-3 ml-3" style="width: 90px;">Add Form</a>
+     <div>
+         <h3 th:if="${boxList.isEmpty()}">No List </h3>
+     </div>
+        <div th:unless="${boxList.isEmpty()}">
+            <div th:each="box : ${boxList}">
+                <h3 th:text="${box.id}"></h3>
+                <h3 th:text="${box.name}"></h3>
+                <h3 th:text="${box.cost}"></h3>
+                <h3 th:text="${box.country}"></h3>
+                <h3 th:text="${box.status}"></h3>
+                <h3 th:text="${box.weight}"></h3>
+                <h3 th:text="${box.weightType}"></h3>
+
+            </div>
+        </div>
     </div>
 
 </header>

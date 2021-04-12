@@ -1,18 +1,17 @@
 package se.lexicon.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 public class Box {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
-
+    @GeneratedValue(generator = "UUID")
+    private String id;
     private String name;
     private String country;
     private String type;
@@ -25,11 +24,11 @@ public class Box {
     public Box() {
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -97,6 +96,7 @@ public class Box {
         this.status = status;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -136,7 +136,7 @@ public class Box {
     @Override
     public String toString() {
         return "Box{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", country='" + country + '\'' +
                 ", type='" + type + '\'' +
