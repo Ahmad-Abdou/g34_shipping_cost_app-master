@@ -16,7 +16,7 @@ import java.util.List;
 public class ShippingController {
 
     BoxRepository boxRepository;
-
+    List<Box> boxList = new ArrayList<>();
     @Autowired
     public void setBoxRepository(BoxRepository boxRepository) {
         this.boxRepository = boxRepository;
@@ -39,12 +39,31 @@ public class ShippingController {
 
     @PostMapping("/add")
     public String add( @ModelAttribute("box") Box box ) {
-
+        box.setCost(calculatingCost(box));
         boxRepository.save(box);
         System.out.println("box = " + box);
         return "redirect:/list";
     }
 
+    public double calculatingCost(Box box){
+        double cost = 0.0;
+        if(box == null) throw new NullPointerException ("Invalid data!");
+         if(box.getCountry().equals("Sweden")  && box.getWeightType().equals("KG") ){
+            cost=  box.getWeight()*(2.5)*1000;
+        }
+        else if(box.getCountry().equals("Sweden") && box.getWeightType().equals("G")){
+            cost=  box.getWeight()*(2.5)*2;
+        }
+
+        if(box.getCountry().equals("Sweden") && box.getWeightType().equals("KG")){
+            cost=  box.getWeight()*(7.0)*1000;
+        }
+        else if(box.getCountry().equals("Sweden") && box.getWeightType().equals("G")){
+            cost=  box.getWeight()*(7.0)*2;
+        }
+
+        return cost;
+    }
 
 }
 
