@@ -17,35 +17,32 @@ public class ShippingController {
 
     BoxRepository boxRepository;
 
-
     @Autowired
     public void setBoxRepository(BoxRepository boxRepository) {
         this.boxRepository = boxRepository;
     }
 
-    @GetMapping("/")
-    public String addBoxForm(){
-        return "addBoxForm";
-    }
-    @GetMapping("/show/list")
-    public String showBoxList(Model model){
+    @GetMapping("/list")
+    public String getAll(Model model) {
         Iterable<Box> iterable = boxRepository.findAll();
         List<Box> boxList = new ArrayList<>();
         iterable.iterator().forEachRemaining(boxList::add);
-        model.addAttribute("boxList",boxList);
+        model.addAttribute("boxList", boxList);
         return "showBoxList";
     }
-    @GetMapping("/register")
-    public String register(Model model){
+    @GetMapping("/")
+    public String registerForm(Model model) {
         Box box = new Box();
-        model.addAttribute("box",box);
+        model.addAttribute("box", box);
         return "addBoxForm";
     }
-    @PostMapping("/add/box")
-    public String add(@ModelAttribute("box") Box box) {
-        System.out.println(box);
-//        boxRepository.save(box);
-        return "redirect:/show/list";
+
+    @PostMapping("/add")
+    public String add( @ModelAttribute("box") Box box ) {
+
+        boxRepository.save(box);
+        System.out.println("box = " + box);
+        return "redirect:/list";
     }
 
 
