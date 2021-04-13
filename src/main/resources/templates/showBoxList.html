@@ -19,19 +19,38 @@
 <body>
 <header>
     <div class="card bg-dark">
-        <h1 class="bg-dark text-white" style="padding: 30px;">ShowList</h1>
+        <h1 class="bg-dark text-white" style="padding: 30px; text-align: center">ShowList</h1>
         <a th:href="@{/}" class="btn btn-outline-success p-1 mb-3 ml-5" style="width: 90px;">Add Form</a>
+        <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
         <div>
-            <h3 th:if="${boxList.isEmpty()} " class="ml-5 text-white">No List </h3>
+            <h3 th:if="${boxList.isEmpty()} " class="text-white" style="margin-left: 886px; font-size: 40px;">No List </h3>
         </div>
         <div th:unless="${boxList.isEmpty()}" class="text-white ml-5">
             <div th:each="box : ${boxList}">
-                <p style="font-size: 25px; color: #d94649"> ID: <span th:text="${box.id} " style="font-size: 23px"></span> </p> </br>
-                <p style="font-size: 25px"> Name: <span th:text="${box.name}" style="font-size: 23px"></span></p></br>
-                <p style="font-size: 25px">Country: <span th:text="${box.country}" style="font-size: 23px"></span></p></br>
-                <p style="font-size: 25px"> Status: <span th:text="${box.status}" style="font-size: 23px"></span></p></br>
-                <p style="font-size: 25px">Weight: <span th:text="${box.weight}" style="font-size: 23px"></span></p></br>
-                <p style="font-size: 25px">WeightType: <span th:text="${box.weightType}" style="font-size: 23px"></span>
+                <div class="container">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr style=" text-align: center ;color: white">
+                            <th>ID</th>
+                            <th >Name</th>
+                            <th >Country</th>
+                            <th>Weight</th>
+                            <th>WeightType</th>
+                            <th>Cost</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr style="text-align: center">
+                            <td><p style="font-size: 20px; color: #d94649"> <span th:text="${box.id} " style="font-size: 20px"></span> </p> </td>
+                            <td><p style="font-size: 17px;">  <span th:text="${box.name}" style="font-size: 17px ;color: white"></span></p></td>
+                            <td><p style="font-size: 17px"> <span th:text="${box.country}" style="font-size: 17px;color: white"></span></p></td>
+                            <td><p style="font-size: 17px"> <span th:text="${box.weight}" style="font-size: 17px;color: white"></span></p></td>
+                            <td><p style="font-size: 17px"> <span th:text="${box.weightType}" style="font-size: 17px;color: white"></span></p></td>
+                            <td><p style="font-size: 20px;color: white; "> <span th:text="${box.cost}" style="font-size: 20px;background-color: #d94649"></span> SEK</p></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
         </div>

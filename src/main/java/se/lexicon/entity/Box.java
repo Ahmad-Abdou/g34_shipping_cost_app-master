@@ -29,7 +29,6 @@ public class Box {
     private String weightType;
     @Column(columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
     private LocalDateTime createDate;
-    @Column(nullable = false)
     private boolean status;
 
     public Box() {

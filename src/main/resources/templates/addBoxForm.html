@@ -12,27 +12,44 @@
     <style>
         body {
             padding-top: 60px;
+
         }
+        .back a{
+            border: 1px solid #d94649;
+            border-radius: 4px;
+            width: 80px;
+            margin-top: 20px;
+            color: #d94649;
+        }
+        .back a:hover{
+            background-color: #d94649;
+            transform: scale(1.2);
+            color: white;
+        }
+
     </style>
 
 </head>
 <body>
-<div class="card" style="width: 900px; margin-left: 30px;padding: 30px">
+<div class="card" style="width: 900px; margin-left: 500px;padding: 30px">
     <h1 class="bg-dark text-white p-3 mr-4" style="margin-left: 20px">Add Form</h1>
     <form th:action="@{/add}" method="post" th:object="${box}" >
         <div class="form-group">
             <label for="Name">Name</label>
             <input type="text" class="form-control" th:field="*{name}" placeholder="Enter Name" id="Name">
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
         </div>
         <div class="form-group">
             <input type="radio" name="radio" th:field="*{type}" value="Letter" id="Letter">
             <label>Letter</label>
             <input type="radio" name="radio" th:field="*{type}" value="Packet" id="Packet">
             <label>Packet</label>
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></p>
         </div>
         <div class="form-group">
             <label for="weight">Weight</label>
             <input type="number" class="form-control" th:field="*{weight}" placeholder="0.0" name="weight" id="weight" >
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></p>
         </div>
         <div class="form-group">
             <label>Weight Type</label>
@@ -40,15 +57,20 @@
                 <option value="KG">KG</option>
                 <option value="G">G</option>
             </select>
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('weightType')}" th:errors="*{weightType}"></p>
+        </div>
 
             <div class="form-group">
-                <label for="Country">Country</label>
-                <input type="text" class="form-control" th:field="*{country}" id="Country">
+                <label>Country</label>
+                <input type="text" class="form-control" th:field="*{country}" name="country" id="country">
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
             </div>
 
-            <button type="submit" class="btn btn-primary mt-5">Submit</button>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
     </form>
-    <a class="btn bg-danger mt-5 text-white " style="width: 80px;border-color:white; border-radius: 4px ">Back</a>
+    <div class="back">
+    <a th:href="@{/list}" class="btn">Back</a>
+    </div>
 </div>
 
 </body>
