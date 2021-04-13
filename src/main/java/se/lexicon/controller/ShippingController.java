@@ -13,6 +13,7 @@ import se.lexicon.entity.Box;
 import se.lexicon.repositroy.BoxRepository;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +69,8 @@ public class ShippingController {
             return "addBoxForm";
         }
         box.setCost(calculatingCost(box));
+        box.setCreateDate(LocalDateTime.now());
+        box.setStatus(true);
         boxRepository.save(box);
 
         redirectAttributes.addFlashAttribute("message", "Operation is Done. Tracking Code:"+box.getId());

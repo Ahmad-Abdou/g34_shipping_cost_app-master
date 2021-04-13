@@ -13,6 +13,9 @@
         body {
             padding-top: 60px;
         }
+        .date{
+          margin-left: 1000px;
+        }
     </style>
 
 </head>
@@ -36,6 +39,7 @@
                             <th >Country</th>
                             <th>Weight</th>
                             <th>WeightType</th>
+                            <th>Status</th>
                             <th>Cost</th>
                         </tr>
                         </thead>
@@ -46,10 +50,12 @@
                             <td><p style="font-size: 17px"> <span th:text="${box.country}" style="font-size: 17px;color: white"></span></p></td>
                             <td><p style="font-size: 17px"> <span th:text="${box.weight}" style="font-size: 17px;color: white"></span></p></td>
                             <td><p style="font-size: 17px"> <span th:text="${box.weightType}" style="font-size: 17px;color: white"></span></p></td>
+                            <td><p style="font-size: 17px"> <span th:text="${box.status}" style="font-size: 17px;color: #10d904"></span></p></td>
                             <td><p style="font-size: 20px;color: white; "> <span th:text="${box.cost}" style="font-size: 20px;background-color: #d94649"></span> SEK</p></td>
                         </tr>
                         </tbody>
                     </table>
+                    <p class="date" style="font-size: 11px;color: white;" th:text="${box.createDate}"></p>
                 </div>
 
             </div>
